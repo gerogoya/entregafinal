@@ -4,7 +4,6 @@ import { ProductListPage } from "../support/pages/productlistpage"
 import { ShopingCartPage } from "../support/pages/shoppingcatpage"
 import { CheckOutPage } from "../support/pages/checkoutpage"
 import { ReciptPage } from "../support/pages/recipt"
-// shift + alt + F (ordenar)
 
 describe('Entrega Final', () => {
     let producto, datosTarjeta
@@ -87,7 +86,9 @@ describe('Entrega Final', () => {
         checkoutpage.ingresarDatosPago(datosTarjeta.nombre, datosTarjeta.apellido, datosTarjeta.numTarjeta)
         checkoutpage.clickPurchase_Btn()
         reciptpage.verificarNombreApellidoEnRecibo(datosTarjeta.nombre, datosTarjeta.apellido)
-        reciptpage.verificarProductos(producto.producto1, producto.producto2, datosTarjeta.numTarjeta)
+        reciptpage.verificarProducto(producto.producto1)
+        reciptpage.verificarProducto(producto.producto2)
+        reciptpage.verificarTarjeta(datosTarjeta.numTarjeta)
         reciptpage.verificarPrecioTotalRecibo(producto.precioproducto1 + producto.precioproducto2)
 
     })
@@ -110,4 +111,5 @@ describe('Entrega Final', () => {
         })
 
     })
-})          
+})
+

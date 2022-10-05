@@ -10,14 +10,16 @@ export class ReciptPage {
         cy.get('#name', { timeout: 60000 }).invoke('text').should('contain', `${nombre} ${apellido}`)
     }
 
-    verificarProductos(producto1, producto2, numTarjeta) {
-
-        cy.xpath('//*[@id="name"]//following-sibling::p').invoke('text')
-            .should("have.contain", producto1)
-            .and("have.contain", producto2)
-            .and("contain", numTarjeta)
-
+    verificarProducto(producto) {
+        cy.get("#name").siblings().invoke('text').should("contain", producto) 
     }
+
+    verificarTarjeta(numTarjeta) {
+        cy.xpath('//*[@id="name"]//following-sibling::p').invoke('text')
+            .should("contain", numTarjeta)
+    }
+
+
 
     verificarPrecioTotalRecibo(precioTotal) {
         cy.contains(`$${precioTotal}`)
